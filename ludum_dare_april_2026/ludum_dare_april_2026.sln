@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ludum_dare_april_2026", "ludum_dare_april_2026.csproj", "{1F1EBE7E-0869-4124-BF14-52A867772886}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{1F1EBE7E-0869-4124-BF14-52A867772886}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

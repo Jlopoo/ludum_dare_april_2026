@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://clkeiyr2kijew"]
+[gd_scene format=3 uid="uid://clkeiyr2kijew"]
 
-[ext_resource type="Script" uid="uid://b5kbscs40cupt" path="res://Scripts/options_menu.gd" id="1_plplt"]
+[ext_resource type="Script" uid="uid://btpepiqf0kcj8" path="res://Scripts/options_menu.cs" id="1_plplt"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" unique_id=1613095940]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

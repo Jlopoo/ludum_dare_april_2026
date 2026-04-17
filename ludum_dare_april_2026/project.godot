@@ -8,8 +8,17 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="ludum_dare_april_2026"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://bglvro8jcp7ho"
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="ludum_dare_april_2026"

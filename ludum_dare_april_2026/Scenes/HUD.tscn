@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0bney7qb4lm"]
+[gd_scene format=3 uid="uid://c0bney7qb4lm"]
 
-[ext_resource type="Script" uid="uid://dxfbnwk6h5qbt" path="res://Scripts/HUD.gd" id="1_sd512"]
+[ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
 
-[node name="Hud" type="Control"]
+[node name="Hud" type="Control" unique_id=427346606]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
