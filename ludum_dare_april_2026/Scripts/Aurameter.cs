@@ -43,22 +43,25 @@ public partial class Aurameter : Control
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		HandleAuraInput(delta);
+		// debug // HandleAuraInput(delta);
 	}
 
-	private void HandleAuraInput(double delta)
-	{
-		float auraChange = 0f;
+	//---DEBUG---
+	// 
+	// private void HandleAuraInput(double delta)
+	// {
+	// 	float auraChange = 0f;
 
-		if (Input.IsActionPressed("ui_up"))
-			auraChange += (float)delta * auraChangeRate;
+	// 	if (Input.IsActionPressed("ui_up"))
+	// 		auraChange += (float)delta * auraChangeRate;
 
-		if (Input.IsActionPressed("ui_down"))
-			auraChange -= (float)delta * auraChangeRate;
+	// 	if (Input.IsActionPressed("ui_down"))
+	// 		auraChange -= (float)delta * auraChangeRate;
 
-		if (auraChange != 0f)
-			_gameState.IncreaseAura(auraChange);
-	}
+	// 	if (auraChange != 0f)
+	// 		_gameState.IncreaseAura(auraChange);
+	// }
+	//---DEBUG---
 
 	private void OnAuraChanged(float newValue) => UpdateAuraUI(newValue);
 
