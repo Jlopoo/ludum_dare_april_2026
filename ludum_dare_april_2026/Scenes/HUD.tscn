@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
 
-[ext_resource type="PackedScene" uid="uid://c0bney7qb4lm" path="res://Scenes/HUD.tscn" id="4_hud"]
-
-[node name="HUD" type="Control" parent="." instance=ExtResource("4_hud")]
-
 [node name="Hud" type="Control" unique_id=427346606]
 layout_mode = 3
 anchors_preset = 15
