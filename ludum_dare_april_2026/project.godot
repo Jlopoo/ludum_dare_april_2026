@@ -19,6 +19,10 @@ run/main_scene="uid://djkhwlwl5dqmh"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameState="*res://Scripts/GameState.cs"
+
 [dotnet]
 
 project/assembly_name="ludum_dare_april_2026"

@@ -1,36 +1,49 @@
 using Godot;
 
+/// <summary>
+/// UI display for the aura meter. Owns no game state itself — all values
+/// live in <see cref="GameState"/> so they survive scene changes.
+/// </summary>
 public partial class Aurameter : Control
 {
-	private float aurameter = 67f;
-	private float maxAurameter = 100f;
-	private float minAurameter = 0f;
-	private float auraChangeRate = 15f; // Aura change per second
+	private float auraChangeRate = 15f; // units per second (debug input)
 
-	// UI nodes
 	private ProgressBar auraMeterBar;
 	private Label auraLabel;
+
+	private GameState _gameState;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		GD.Print("Aurameter Node Ready");
 
-		// Get or create UI nodes
+		_gameState = GetNode<GameState>("/root/GameState");
+
 		auraMeterBar = GetNode<ProgressBar>("AuraMeterBar");
 		auraLabel = GetNode<Label>("AuraLabel");
 
-		auraMeterBar.MinValue = minAurameter;
-		auraMeterBar.MaxValue = maxAurameter;
-		auraMeterBar.Value = aurameter;
+		auraMeterBar.MinValue = _gameState.MinAura;
+		auraMeterBar.MaxValue = _gameState.MaxAura;
 		auraMeterBar.CustomMinimumSize = new Vector2(200, 30);
+
+		// Keep UI in sync whenever aura changes (even from other systems)
+		_gameState.AuraChanged += OnAuraChanged;
+
+		UpdateAuraUI(_gameState.Aura);
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		if (_gameState != null)
+			_gameState.AuraChanged -= OnAuraChanged;
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 		HandleAuraInput(delta);
-		UpdateAuraUI();
 	}
 
 	private void HandleAuraInput(double delta)
@@ -43,41 +56,23 @@ public partial class Aurameter : Control
 		if (Input.IsActionPressed("ui_down"))
 			auraChange -= (float)delta * auraChangeRate;
 
-		if (Input.IsActionPressed("ui_accept"))
-			auraChange += (float)delta * auraChangeRate;
-
-		aurameter = Mathf.Clamp(aurameter + auraChange, minAurameter, maxAurameter);
+		if (auraChange != 0f)
+			_gameState.IncreaseAura(auraChange);
 	}
 
-	private void UpdateAuraUI()
+	private void OnAuraChanged(float newValue) => UpdateAuraUI(newValue);
+
+	private void UpdateAuraUI(float value)
 	{
-		auraMeterBar.Value = aurameter;
-		auraLabel.Text = $"Aura: {aurameter:F0}/{maxAurameter:F0}";
+		auraMeterBar.Value = value;
+		auraLabel.Text = $"Aura: {value:F0}/{_gameState.MaxAura:F0}";
 	}
 
-	// -- Aurameter API ------------------------------------------------------
+	// -- Pass-through API (so existing callers don't break) -----------------
 
-	/// Increase the Aurameter by the specified amount.
-	public void IncreaseAura(float amount)
-	{
-		aurameter = Mathf.Clamp(aurameter + amount, minAurameter, maxAurameter);
-	}
-
-	/// Decrease the Aurameter by the specified amount.
-	public void DecreaseAura(float amount)
-	{
-		aurameter = Mathf.Clamp(aurameter - amount, minAurameter, maxAurameter);
-	}
-
-	/// Set the Aurameter to a specific value.
-	public void SetAura(float value)
-	{
-		aurameter = Mathf.Clamp(value, minAurameter, maxAurameter);
-	}
-
-	/// Get the current Aurameter value.
-	public float GetAura() => aurameter;
-
-	/// Get the Aurameter as a normalized value (0–1).
-	public float GetAuraNormalized() => aurameter / maxAurameter;
+	public void IncreaseAura(float amount) => _gameState.IncreaseAura(amount);
+	public void DecreaseAura(float amount) => _gameState.DecreaseAura(amount);
+	public void SetAura(float value) => _gameState.SetAura(value);
+	public float GetAura() => _gameState.Aura;
+	public float GetAuraNormalized() => _gameState.GetAuraNormalized();
 }
