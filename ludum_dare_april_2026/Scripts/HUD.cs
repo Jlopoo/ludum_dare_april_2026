@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Hud : Control
+public partial class HUD : Control
 {
     public override void _Ready()
     {
