@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
 [ext_resource type="PackedScene" uid="uid://d36efxc2wixr7" path="res://Scenes/Aurameter.tscn" id="2_aurameter"]
+[ext_resource type="PackedScene" uid="uid://4csx0upmjdog" path="res://Scenes/DialogueWindow.tscn" id="3_psnte"]
+[ext_resource type="PackedScene" uid="uid://b2yws17cyyht3" path="res://Scenes/ResponseWindow.tscn" id="4_s3jbq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal_gear"]
 bg_color = Color(0.298, 0.224, 0.157, 1)

@@ -5,6 +5,8 @@ public partial class HUD : Control
 	// HUD child nodes
 	private Aurameter aurameter;
 	private Button optionsButton;
+    private DialogueLog dialogueWindow;
+    private Control responseWindow;
 	private ConversationManager conversationManager;
 	private GameState _gameState;
 
@@ -20,11 +22,10 @@ public partial class HUD : Control
 		optionsButton = GetNode<Button>("OptionsButton");
 		optionsButton.Pressed += OnOptionsPressed;
 
-		// --- Dialogue Window ---
-		var dw_Scene = GD.Load<PackedScene>("res://Scenes/DialogueWindow.tscn");
-		var dw_Instance = dw_Scene.Instantiate<Control>();
-		AddChild(dw_Instance);
+        // --- ResponsesWindow ---
+        responseWindow = GetNode<Control>("ResponseWindow");
 
+		// --- Dialogue Window ---
 		DialogueLog.Instance.AddEntry("Alice", "We meed again.");
 
 		// --- GameState and Conversation Wiring ---
