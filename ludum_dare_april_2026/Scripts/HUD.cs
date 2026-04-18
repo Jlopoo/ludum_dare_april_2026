@@ -17,7 +17,7 @@ public partial class HUD : Control
 
 		// --- OptionsButtons ---
 		optionsButtons = GetNode<Control>("OptionsButtons");
-		optionButton = optionsButtons.GetNode<Button>("Option1Button");
+		optionButton = optionsButtons.GetNode<Button>("OpenOptions");
 
 		optionButton.Pressed += () => OnOptionPressed(0);
 	}
