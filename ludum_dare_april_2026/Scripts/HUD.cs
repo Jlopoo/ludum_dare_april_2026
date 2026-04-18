@@ -57,6 +57,17 @@ public partial class HUD : Control
 		base._Process(delta);
 	}
 
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		base._UnhandledInput(@event);
+		
+		// Consume space bar input so it doesn't trigger anything
+		if (@event is InputEventKey keyEvent && keyEvent.Keycode == Key.Space)
+		{
+			GetTree().Root.SetInputAsHandled();
+		}
+	}
+
 	private void OnChoiceSelected(DialogueChoice choice)
 	{
 		if (choice.AffectionDelta != 0)

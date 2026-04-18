@@ -6,15 +6,8 @@ using Godot.Collections;
 /// <summary>
 /// THIS IS A TEST BOOTSTRAP FOR THE CONVERSATION SYSTEM. IT IS NOT PART OF THE FINAL GAME, SO YOU CAN SAFELY DELETE IT.
 /// Drop-in test driver: when added to a scene tree, it spawns a <see cref="ConversationManager"/>
-/// child, subscribes to every signal with a console log, and lets you drive the conversation
-/// from the keyboard:
-///   <list type="bullet">
-///     <item><description><b>Space / Enter</b> — advance the current line.</description></item>
-///     <item><description><b>1–9</b> — pick a choice when one is presented.</description></item>
-///     <item><description><b>Space / Enter</b> after a conversation ends — restart it.</description></item>
-///   </list>
-/// Also pokes <see cref="GameState"/> with the scored aura delta so you can see the meter
-/// move as you test. Delete this file once you've wired conversations into your real flow.
+/// child and subscribes to every signal with a console log.
+/// Delete this node (and this file) once you've wired conversations into your real gameplay flow.
 /// </summary>
 public partial class ConversationTestBootstrap : Node
 {
@@ -39,42 +32,8 @@ public partial class ConversationTestBootstrap : Node
         _manager.ChoiceSelected += OnChoiceSelected;
         _manager.ConversationEnded += OnConversationEnded;
 
-        _manager.Start(StartConversation ?? DefaultSample());
+        _manager.Start(StartConversation ?? SampleConversations.AlienOneIntro());
     }
-
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        base._UnhandledInput(@event);
-
-        if (@event is not InputEventKey key || !key.Pressed || key.Echo)
-        {
-            return;
-        }
-
-        switch (_manager.State)
-        {
-            case ConversationState.Presenting
-                when key.Keycode == Key.Space || key.Keycode == Key.Enter:
-                _manager.Advance();
-                GetViewport().SetInputAsHandled();
-                break;
-
-            case ConversationState.AwaitingChoice
-                when key.Keycode >= Key.Key1 && key.Keycode <= Key.Key9:
-                int index = (int)(key.Keycode - Key.Key1);
-                _manager.SelectChoice(index);
-                GetViewport().SetInputAsHandled();
-                break;
-
-            case ConversationState.Finished
-                when key.Keycode == Key.Space || key.Keycode == Key.Enter:
-                _manager.Start(StartConversation ?? DefaultSample());
-                GetViewport().SetInputAsHandled();
-                break;
-        }
-    }
-
-    private static Conversation DefaultSample() => SampleConversations.FloopianIntro();
 
     private static void OnConversationStarted(Conversation conversation)
     {
