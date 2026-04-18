@@ -1,12 +1,59 @@
-[gd_scene format=3 uid="uid://clkeiyr2kijew"]
+[gd_scene load_steps=2 format=3 uid="uid://clkeiyr2kijew"]
 
-[ext_resource type="Script" uid="uid://btpepiqf0kcj8" path="res://Scripts/options_menu.cs" id="1_plplt"]
+[ext_resource type="Script" uid="uid://btpepiqf0kcj8" path="res://Scripts/OptionsMenu.cs" id="1_opt"]
 
-[node name="OptionsMenu" type="Control" unique_id=1613095940]
+[node name="OptionsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_plplt")
+script = ExtResource("1_opt")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.05, 0.18, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/Column"]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="VolumeRow" type="HBoxContainer" parent="CenterContainer/Column"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/Column/VolumeRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/Column/VolumeRow"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="BackButton" type="Button" parent="CenterContainer/Column"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Back"

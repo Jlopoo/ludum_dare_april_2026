@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="AlienSpecies" load_steps=5 format=3 uid="uid://bzorbla8p3kxt"]
+
+[ext_resource type="Script" path="res://Scripts/Data/AlienSpecies.cs" id="1_aspc"]
+[ext_resource type="Script" path="res://Scripts/Data/SignalCue.cs" id="2_cue"]
+
+[sub_resource type="Resource" id="Cue_Good"]
+script = ExtResource("2_cue")
+Description = "Tentacles ripple violet and shimmer."
+DisplayColor = Color(0.55, 0.2, 0.85, 1)
+Glyph = "~"
+Icon = null
+SoundEffect = null
+
+[sub_resource type="Resource" id="Cue_Neutral"]
+script = ExtResource("2_cue")
+Description = "Eye-stalks freeze and tilt slightly."
+DisplayColor = Color(0.6, 0.6, 0.65, 1)
+Glyph = "—"
+Icon = null
+SoundEffect = null
+
+[sub_resource type="Resource" id="Cue_Bad"]
+script = ExtResource("2_cue")
+Description = "Gills flash bright crimson."
+DisplayColor = Color(0.95, 0.25, 0.3, 1)
+Glyph = "!"
+Icon = null
+SoundEffect = null
+
+[resource]
+script = ExtResource("1_aspc")
+SpeciesId = "zorblaxian"
+SpeciesName = "Zorblaxian"
+HomePlanet = "Zorblax-9"
+Portrait = null
+ThemeColor = Color(0.35, 0.28, 0.7, 1)
+Description = "Zorblaxians communicate through tentacle ripples and gill pulses. They value fiery passion and mathematical beauty."
+GoodSignal = SubResource("Cue_Good")
+NeutralSignal = SubResource("Cue_Neutral")
+BadSignal = SubResource("Cue_Bad")

@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="DateScenario" load_steps=19 format=3 uid="uid://cvorbax1x5mpr"]
+
+[ext_resource type="Script" path="res://Scripts/Data/DateScenario.cs" id="1_scn"]
+[ext_resource type="Script" path="res://Scripts/Data/DialoguePrompt.cs" id="2_dp"]
+[ext_resource type="Script" path="res://Scripts/Data/ResponseOption.cs" id="3_ro"]
+[ext_resource type="Resource" uid="uid://bzorbla8p3kxt" path="res://Data/Species/zorblaxian.tres" id="4_spc"]
+
+[sub_resource type="Resource" id="R1A"]
+script = ExtResource("3_ro")
+Text = "Scalding hot, like my passion!"
+Reaction = 2
+
+[sub_resource type="Resource" id="R1B"]
+script = ExtResource("3_ro")
+Text = "Room temperature is fine."
+Reaction = 1
+
+[sub_resource type="Resource" id="R1C"]
+script = ExtResource("3_ro")
+Text = "Frozen solid. I eat my drinks."
+Reaction = 0
+
+[sub_resource type="Resource" id="P1"]
+script = ExtResource("2_dp")
+AlienLine = "Greetings, warm-blooded visitor. What is your preferred liquid temperature?"
+ResponseA = SubResource("R1A")
+ResponseB = SubResource("R1B")
+ResponseC = SubResource("R1C")
+
+[sub_resource type="Resource" id="R2A"]
+script = ExtResource("3_ro")
+Text = "Absolutely. Seven is my favorite."
+Reaction = 2
+
+[sub_resource type="Resource" id="R2B"]
+script = ExtResource("3_ro")
+Text = "Numbers are fine, I guess."
+Reaction = 1
+
+[sub_resource type="Resource" id="R2C"]
+script = ExtResource("3_ro")
+Text = "Math is for robots."
+Reaction = 0
+
+[sub_resource type="Resource" id="P2"]
+script = ExtResource("2_dp")
+AlienLine = "Tell me... do you enjoy the austere beauty of prime numbers?"
+ResponseA = SubResource("R2A")
+ResponseB = SubResource("R2B")
+ResponseC = SubResource("R2C")
+
+[sub_resource type="Resource" id="R3A"]
+script = ExtResource("3_ro")
+Text = "A singularity in the family? Impressive!"
+Reaction = 2
+
+[sub_resource type="Resource" id="R3B"]
+script = ExtResource("3_ro")
+Text = "That's... interesting."
+Reaction = 1
+
+[sub_resource type="Resource" id="R3C"]
+script = ExtResource("3_ro")
+Text = "Do you have any normal relatives?"
+Reaction = 0
+
+[sub_resource type="Resource" id="P3"]
+script = ExtResource("2_dp")
+AlienLine = "What would you say... if I told you my third cousin is a black hole?"
+ResponseA = SubResource("R3A")
+ResponseB = SubResource("R3B")
+ResponseC = SubResource("R3C")
+
+[resource]
+script = ExtResource("1_scn")
+AlienName = "Vorbax"
+Species = ExtResource("4_spc")
+Prompts = Array[Resource]([SubResource("P1"), SubResource("P2"), SubResource("P3")])
+IntroLine = "A Zorblaxian named Vorbax floats across from you, tentacles waving."
+SuccessLine = "Vorbax's tentacles ripple furiously. You've got a match!"
+FailureLine = "Vorbax's gills flash red one last time. They scoot away."
+SuccessThresholdOverride = -1.0

@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dsu4h2fa0mqxy"]
+
+[ext_resource type="Script" uid="uid://bdatesummk4w9h" path="res://Scripts/UI/DateSummary.cs" id="1_sum"]
+
+[node name="DateSummary" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sum")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.12, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeadlineLabel" type="Label" parent="Center/Column"]
+layout_mode = 2
+text = "A Match!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Center/Column"]
+layout_mode = 2
+text = "Final Aura: 0%"
+horizontal_alignment = 1
+
+[node name="ThresholdLabel" type="Label" parent="Center/Column"]
+layout_mode = 2
+text = "Needed: 80%"
+horizontal_alignment = 1
+
+[node name="BabiesLabel" type="Label" parent="Center/Column"]
+layout_mode = 2
+text = "Babies: 0"
+horizontal_alignment = 1
+
+[node name="FlavorTextLabel" type="RichTextLabel" parent="Center/Column"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = ""
+
+[node name="ContinueButton" type="Button" parent="Center/Column"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next Date"

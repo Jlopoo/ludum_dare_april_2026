@@ -1,12 +1,67 @@
-[gd_scene format=3 uid="uid://djkhwlwl5dqmh"]
+[gd_scene load_steps=2 format=3 uid="uid://djkhwlwl5dqmh"]
 
-[ext_resource type="Script" uid="uid://dkd8emw5tw705" path="res://Scripts/main_menu.cs" id="1_28flt"]
+[ext_resource type="Script" uid="uid://dkd8emw5tw705" path="res://Scripts/MainMenu.cs" id="1_mm"]
 
-[node name="MainMenu" type="Control" unique_id=1325346480]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_28flt")
+script = ExtResource("1_mm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.05, 0.18, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonColumn" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterContainer/ButtonColumn"]
+layout_mode = 2
+text = "SIGNALS"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/ButtonColumn"]
+layout_mode = 2
+text = "An Alien Dating Sim"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/ButtonColumn"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/ButtonColumn"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Start Dating"
+
+[node name="SignalJournalButton" type="Button" parent="CenterContainer/ButtonColumn"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Signal Journal"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/ButtonColumn"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/ButtonColumn"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+text = "Quit"

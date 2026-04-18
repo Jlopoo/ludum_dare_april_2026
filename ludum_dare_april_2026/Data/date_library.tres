@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DateLibrary" load_steps=3 format=3 uid="uid://cdatelib7wvnk"]
+
+[ext_resource type="Script" path="res://Scripts/Data/DateLibrary.cs" id="1_lib"]
+[ext_resource type="Resource" uid="uid://cvorbax1x5mpr" path="res://Data/Dates/date_01_vorbax.tres" id="2_d1"]
+
+[resource]
+script = ExtResource("1_lib")
+Dates = Array[Resource]([ExtResource("2_d1")])
