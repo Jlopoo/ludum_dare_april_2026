@@ -4,17 +4,10 @@ public partial class main : Node2D
 {
 	private HUD hud;
 	private Button optionsButton;
-	
+
 	public override void _Ready()
 	{
         base._Ready();
-        
-        // Try to get HUD if it exists
-        if (HasNode("HUD"))
-        {
-            hud = GetNode<HUD>("HUD");
-            hud.Visible = false;
-        }
 
 		// Setup options gear button
 		optionsButton = GetNode<Button>("OptionsButton");
@@ -23,19 +16,19 @@ public partial class main : Node2D
 			optionsButton.Pressed += OnOptionsPressed;
 			GD.Print("Options button connected");
 		}
+
+		StartGame();
 	}
 
 	public void StartGame()
     {
-        hud.Visible = true;
+		GD.Print("StartGame() called");
 
-        // Optionally kick off the first conversation immediately
-        // hud.ShowConversation(
-        //     "Hello! Nice to meet you.",
-        //     "Nice to meet you too!",
-        //     "Who are you?",
-        //     "..."
-        // );
+		// Instantiate HUD (includes Aurameter as a child)
+		PackedScene hudScene = GD.Load<PackedScene>("res://Scenes/HUD.tscn");
+		hud = hudScene.Instantiate<HUD>();
+		AddChild(hud);
+		GD.Print("HUD instantiated and added to scene");
     }
 
 	private void OnOptionsPressed()
