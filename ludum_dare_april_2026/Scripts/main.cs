@@ -3,6 +3,7 @@ using Godot;
 public partial class main : Node2D
 {
 	private HUD hud;
+	private TextureRect characterDisplay;
 
 	public override void _Ready()
 	{
@@ -15,11 +16,32 @@ public partial class main : Node2D
     {
 		GD.Print("StartGame() called");
 
+		characterDisplay = GetNode<TextureRect>("CharacterDisplay");
+
+		// Listen for portrait swap requests from GameState
+		var gameState = GetNode<GameState>("/root/GameState");
+		gameState.CharacterChangeRequested += SetCharacter;
+
 		PackedScene hudScene = GD.Load<PackedScene>("res://Scenes/HUD.tscn");
 		hud = hudScene.Instantiate<HUD>();
 		AddChild(hud);
 		GD.Print("HUD instantiated and added to scene");
     }
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		var gameState = GetNode<GameState>("/root/GameState");
+		if (gameState != null)
+			gameState.CharacterChangeRequested -= SetCharacter;
+	}
+
+	/// Swaps the character portrait. Pass a res:// path to the new texture.
+	public void SetCharacter(string texturePath)
+	{
+		var texture = GD.Load<Texture2D>(texturePath);
+		characterDisplay.Texture = texture;
+	}
 
 	public override void _Process(double delta)
 	{

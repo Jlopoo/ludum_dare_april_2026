@@ -18,6 +18,22 @@ public partial class GameState : Node
 
     [Signal] public delegate void AuraChangedEventHandler(float newValue);
 
+    // ── Character Portrait ────────────────────────────────────────────────
+    /// <summary>
+    /// Emitted when gameplay code wants to swap the character portrait.
+    /// The <paramref name="texturePath"/> is a res:// path to the new texture.
+    /// </summary>
+    [Signal] public delegate void CharacterChangeRequestedEventHandler(string texturePath);
+
+    /// <summary>
+    /// Call this from ConversationManager (or any other system) to swap the
+    /// character portrait shown in the main scene.
+    /// </summary>
+    public void RequestCharacterChange(string texturePath)
+    {
+        EmitSignal(SignalName.CharacterChangeRequested, texturePath);
+    }
+
     public override void _Ready()
     {
         base._Ready();
