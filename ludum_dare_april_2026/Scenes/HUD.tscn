@@ -63,6 +63,7 @@ text = "⚙"
 
 [node name="DialogueWindow" parent="." unique_id=809945404 instance=ExtResource("3_psnte")]
 layout_mode = 1
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 946.0
@@ -72,6 +73,7 @@ offset_bottom = 468.0
 
 [node name="ResponseWindow" parent="." unique_id=152219563 instance=ExtResource("4_s3jbq")]
 layout_mode = 1
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 947.0
