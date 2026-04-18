@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Conversation" format=3 uid="uid://byh43lkh63ylm"]
+
+[ext_resource type="Script" uid="uid://2pbijb5qhfb2" path="res://Scripts/DialogueLine.cs" id="1_eh53r"]
+[ext_resource type="Script" uid="uid://y81d2tf7h74" path="res://Scripts/Conversation.cs" id="2_0tkhl"]
+[ext_resource type="Script" uid="uid://b2dyj2gwdwkop" path="res://Scripts/DialogueChoice.cs" id="2_i6yo0"]
+
+[sub_resource type="Resource" id="Resource_sh5hv"]
+script = ExtResource("2_i6yo0")
+Text = "Great, I've been Glorshnapping all day."
+AffectionDelta = -3
+ResponseText = "You've been doing WHAT all day?"
+metadata/_custom_type_script = "uid://b2dyj2gwdwkop"
+
+[sub_resource type="Resource" id="Resource_fyfw0"]
+script = ExtResource("2_i6yo0")
+Text = "Hi Glorshnap, good, how about you?"
+ResponseText = "Can't complain."
+metadata/_custom_type_script = "uid://b2dyj2gwdwkop"
+
+[sub_resource type="Resource" id="Resource_v2tfe"]
+script = ExtResource("2_i6yo0")
+Text = "Hi Glompshnap, it's going great."
+AffectionDelta = 3
+ResponseText = "Hehehe, that's good to hear."
+metadata/_custom_type_script = "uid://b2dyj2gwdwkop"
+
+[sub_resource type="Resource" id="Resource_kvx80"]
+script = ExtResource("1_eh53r")
+SpeakerId = "alien1_test"
+Text = "Hello Glorshnap.  I'm Glorshnap.  How is your glorshnap going?"
+Choices = Array[ExtResource("2_i6yo0")]([SubResource("Resource_sh5hv"), SubResource("Resource_fyfw0"), SubResource("Resource_v2tfe")])
+metadata/_custom_type_script = "uid://2pbijb5qhfb2"
+
+[resource]
+script = ExtResource("2_0tkhl")
+Lines = Array[ExtResource("1_eh53r")]([SubResource("Resource_kvx80")])
+metadata/_custom_type_script = "uid://y81d2tf7h74"
