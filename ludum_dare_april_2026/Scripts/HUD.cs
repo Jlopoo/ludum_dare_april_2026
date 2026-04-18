@@ -4,8 +4,7 @@ public partial class HUD : Control
 {
 	// HUD child nodes
 	private Aurameter aurameter;
-	private Control optionsButtons;
-	private Button optionButton;
+	private Button optionsButton;
 	private ConversationManager conversationManager;
 	private GameState _gameState;
 
@@ -17,11 +16,9 @@ public partial class HUD : Control
 		// --- Aurameter ---
 		aurameter = GetNode<Aurameter>("Aurameter");
 
-		// --- OptionsButtons ---
-		optionsButtons = GetNode<Control>("OptionsButtons");
-		optionButton = optionsButtons.GetNode<Button>("OpenOptions");
-
-		optionButton.Pressed += () => OnOptionPressed(0);
+		// --- Options Button ---
+		optionsButton = GetNode<Button>("OptionsButton");
+		optionsButton.Pressed += OnOptionsPressed;
 
 		// --- Dialogue Window ---
 		var dw_Scene = GD.Load<PackedScene>("res://Scenes/DialogueWindow.tscn");
@@ -68,10 +65,9 @@ public partial class HUD : Control
 		}
 	}
 
-	/// Called when a dialogue option button is pressed (override or connect signal as needed).
-	private void OnOptionPressed(int index)
+	/// Called when the gear options button is pressed.
+	private void OnOptionsPressed()
 	{
-		GD.Print($"Option {index + 1} selected");
-		// TODO: hook into your dialogue / game logic here
+		GetTree().ChangeSceneToFile("res://Scenes/options_menu.tscn");
 	}
 }
