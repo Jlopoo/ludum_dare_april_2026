@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bglvro8jcp7ho"]
 
-[ext_resource type="Script" uid="uid://kbehtulfcj3w" path="res://Scripts/main.cs" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://ch153xky4dbde" path="res://Scripts/Main.cs" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://d57jtrs3wju2" path="res://Scripts/player_controller.cs" id="2_bo1nx"]
 
 [node name="Main" type="Node2D" unique_id=1510557570]
-script = ExtResource("1_jjgbg")
+script = ExtResource("1_bo1nx")
+
+[node name="player_controller" type="Node2D" parent="." unique_id=1539326016]
+script = ExtResource("2_bo1nx")
