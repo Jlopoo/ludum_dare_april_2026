@@ -7,6 +7,7 @@ public partial class HUD : Control
 	private Control optionsButtons;
 	private Button optionButton;
     private DialogueLog dialogueWindow;
+    private Control responseWindow;
 
 	public override void _Ready()
 	{
@@ -21,6 +22,9 @@ public partial class HUD : Control
 		optionButton = optionsButtons.GetNode<Button>("OpenOptions");
 
 		optionButton.Pressed += () => OnOptionPressed(0);
+
+        // --- ResponsesWindow ---
+        responseWindow = GetNode<Control>("ResponseWindow");
 
 		// --- Dialogue Window ---
 		DialogueLog.Instance.AddEntry("Alice", "We meed again.");

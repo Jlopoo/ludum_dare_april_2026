@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
 [ext_resource type="PackedScene" uid="uid://d36efxc2wixr7" path="res://Scenes/Aurameter.tscn" id="2_aurameter"]
 [ext_resource type="PackedScene" uid="uid://4csx0upmjdog" path="res://Scenes/DialogueWindow.tscn" id="3_psnte"]
+[ext_resource type="PackedScene" uid="uid://b2yws17cyyht3" path="res://Scenes/ResponseWindow.tscn" id="4_s3jbq"]
 
 [node name="Hud" type="Control" unique_id=427346606]
 layout_mode = 3
@@ -47,3 +48,12 @@ offset_right = 1152.0
 offset_bottom = 511.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="ResponseWindow" parent="." unique_id=152219563 instance=ExtResource("4_s3jbq")]
+layout_mode = 1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 949.0
+offset_top = 526.0
+offset_right = 1150.096
+offset_bottom = 605.216
