@@ -20,6 +20,13 @@ public partial class HUD : Control
 		optionButton = optionsButtons.GetNode<Button>("OpenOptions");
 
 		optionButton.Pressed += () => OnOptionPressed(0);
+
+		// --- Dialogue Window ---
+		var dw_Scene = GD.Load<PackedScene>("res://Scenes/DialogueWindow.tscn");
+		var dw_Instance = dw_Scene.Instantiate<Control>();
+		AddChild(dw_Instance);
+
+		DialogueLog.Instance.AddEntry("Alice", "We meed again.");
 	}
 
 	public override void _Process(double delta)
