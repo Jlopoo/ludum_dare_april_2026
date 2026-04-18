@@ -146,4 +146,4 @@ theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_normal_exit")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed_exit")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover_exit")
-text = "leave. please."
+text = "exit game"

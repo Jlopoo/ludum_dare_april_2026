@@ -4,6 +4,7 @@ public partial class main : Node2D
 {
 	private HUD hud;
 	private Button optionsButton;
+	private Aurameter aurameter;
 	
 	public override void _Ready()
 	{
@@ -23,11 +24,49 @@ public partial class main : Node2D
 			optionsButton.Pressed += OnOptionsPressed;
 			GD.Print("Options button connected");
 		}
+
+		// Start the game
+		StartGame();
 	}
 
 	public void StartGame()
     {
-        hud.Visible = true;
+		GD.Print("StartGame() called");
+		
+		if (hud != null)
+		{
+			hud.Visible = true;
+			GD.Print("HUD made visible");
+		}
+		else
+		{
+			GD.Print("WARNING: HUD is null");
+		}
+
+		// Instantiate and add the Aurameter scene
+		try
+		{
+			PackedScene auraMeterScene = GD.Load<PackedScene>("res://Scenes/Aurameter.tscn");
+			if (auraMeterScene == null)
+			{
+				GD.Print("ERROR: Failed to load Aurameter.tscn");
+				return;
+			}
+			
+			aurameter = auraMeterScene.Instantiate<Aurameter>();
+			if (aurameter == null)
+			{
+				GD.Print("ERROR: Failed to instantiate Aurameter");
+				return;
+			}
+			
+			AddChild(aurameter);
+			GD.Print("Aurameter instantiated and added to scene");
+		}
+		catch (System.Exception ex)
+		{
+			GD.Print($"ERROR in StartGame: {ex.Message}");
+		}
 
         // Optionally kick off the first conversation immediately
         // hud.ShowConversation(
