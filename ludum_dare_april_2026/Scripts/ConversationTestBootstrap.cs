@@ -13,7 +13,8 @@ using Godot.Collections;
 ///     <item><description><b>1–9</b> — pick a choice when one is presented.</description></item>
 ///     <item><description><b>Space / Enter</b> after a conversation ends — restart it.</description></item>
 ///   </list>
-/// Delete this node (and this file) once you've wired conversations into your real gameplay flow.
+/// Also pokes <see cref="GameState"/> with the scored aura delta so you can see the meter
+/// move as you test. Delete this file once you've wired conversations into your real flow.
 /// </summary>
 public partial class ConversationTestBootstrap : Node
 {
@@ -38,7 +39,7 @@ public partial class ConversationTestBootstrap : Node
         _manager.ChoiceSelected += OnChoiceSelected;
         _manager.ConversationEnded += OnConversationEnded;
 
-        _manager.Start(StartConversation ?? SampleConversations.AlienOneIntro());
+        _manager.Start(StartConversation ?? DefaultSample());
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -67,34 +68,69 @@ public partial class ConversationTestBootstrap : Node
 
             case ConversationState.Finished
                 when key.Keycode == Key.Space || key.Keycode == Key.Enter:
-                _manager.Start(StartConversation ?? SampleConversations.AlienOneIntro());
+                _manager.Start(StartConversation ?? DefaultSample());
                 GetViewport().SetInputAsHandled();
                 break;
         }
     }
 
+    private static Conversation DefaultSample() => SampleConversations.FloopianIntro();
+
     private static void OnConversationStarted(Conversation conversation)
     {
-        GD.Print($"=== Conversation '{conversation.ConversationId}' started ===");
+        string alienBlurb = conversation.Alien is { } a
+            ? $" ({a.Name}, {a.Species?.Name ?? "?"})"
+            : "";
+        GD.Print($"=== Conversation '{conversation.ConversationId}' started{alienBlurb} ===");
     }
 
-    private static void OnLineAdvanced(DialogueLine line)
+    private void OnLineAdvanced(DialogueLine line)
     {
-        GD.Print($"{line.SpeakerId}: {line.Text}");
+        string cueBlurb = line.Cue != Cue.None ? $"  [signal: {line.Cue}]" : "";
+        GD.Print($"{line.SpeakerId}: {line.Text}{cueBlurb}");
     }
 
-    private static void OnChoicesPresented(Array<DialogueChoice> choices)
+    private void OnChoicesPresented(Array<DialogueChoice> choices)
     {
-        GD.Print("  Press a number key:");
+        Tone? expected = CueResolver.Resolve(_manager.Current, _manager.CurrentLine);
+        GD.Print(expected is { } e
+            ? $"  (expected tone: {e}) — press a number key:"
+            : "  (no scored cue on this line) — press a number key:");
+
         for (int i = 0; i < choices.Count; i++)
         {
-            GD.Print($"    [{i + 1}] {choices[i].Text}  (affection {FormatDelta(choices[i].AffectionDelta)})");
+            DialogueChoice c = choices[i];
+            int delta = expected is { } ex ? ToneScoring.AuraDelta(c.Tone, ex) : 0;
+            GD.Print($"    [{i + 1}] ({c.Tone}) {c.Text}  →  aura {FormatDelta(delta)}");
         }
     }
 
-    private static void OnChoiceSelected(DialogueChoice choice)
+    private void OnChoiceSelected(DialogueChoice choice)
     {
-        GD.Print($"  -> chose '{choice.Text}'");
+        Tone? expected = CueResolver.Resolve(_manager.Current, _manager.CurrentLine);
+        int delta = expected is { } ex ? ToneScoring.AuraDelta(choice.Tone, ex) : 0;
+
+        GD.Print($"  -> chose '{choice.Text}' (tone={choice.Tone})");
+        if (!string.IsNullOrEmpty(choice.ResponseText))
+        {
+            GD.Print($"     {choice.ResponseText}");
+        }
+
+        if (delta != 0)
+        {
+            // Drive the live aura meter so the player sees the impact immediately.
+            // GameState's autoload registration is what makes this lookup work.
+            GameState? state = GameState.Instance;
+            if (state is not null)
+            {
+                state.ApplyAffectionDelta(delta);
+                GD.Print($"     aura {FormatDelta(delta)}  (now {state.Aura:F0}/{state.MaxAura:F0})");
+            }
+            else
+            {
+                GD.Print($"     aura {FormatDelta(delta)}  (GameState autoload not available)");
+            }
+        }
     }
 
     private static void OnConversationEnded(string conversationId)

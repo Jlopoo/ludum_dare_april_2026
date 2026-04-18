@@ -56,10 +56,17 @@ public partial class ConversationManager : Node
     /// <summary>
     /// Begins a new conversation. If one is already in progress, it is silently ended first
     /// (so a choice's <see cref="DialogueChoice.NextConversation"/> can chain cleanly).
+    /// Runs <see cref="Conversation.Validate"/> first and forwards any warnings to the
+    /// editor Output panel — mismatched cues, missing species, etc. surface here.
     /// </summary>
     public void Start(Conversation conversation)
     {
         ArgumentNullException.ThrowIfNull(conversation);
+
+        foreach (string warning in conversation.Validate())
+        {
+            GD.PushWarning($"[Conversation '{conversation.ConversationId}'] {warning}");
+        }
 
         if (Current is not null)
         {

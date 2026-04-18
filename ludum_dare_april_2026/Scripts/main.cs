@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class main : Node2D
+public partial class Main : Node2D
 {
 	private HUD hud;
 	private TextureRect characterDisplay;

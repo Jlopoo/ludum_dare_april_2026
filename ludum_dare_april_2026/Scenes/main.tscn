@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://bohwmaputs0at"]
 
-[ext_resource type="Script" uid="uid://ch153xky4dbde" path="res://Scripts/main.cs" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://ch153xky4dbde" path="res://Scripts/Main.cs" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://d57jtrs3wju2" path="res://Scripts/player_controller.cs" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://vg0mukf7p5ha" path="res://Assets/Art/SpeedDatingBackground.png" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://c56kmk7asbmhg" path="res://Scripts/ConversationTestBootstrap.cs" id="4_cnvtest"]
-[ext_resource type="Resource" uid="uid://byh43lkh63ylm" path="res://Scenes/Conversation1.tres" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://xxkpbebf4d7n" path="res://Assets/Art/alien1_raw.png" id="6_alien"]
 
 [node name="Main" type="Node2D" unique_id=1510557570]
@@ -37,4 +36,3 @@ stretch_mode = 6
 
 [node name="ConversationTestBootstrap" type="Node" parent="." unique_id=573004729]
 script = ExtResource("4_cnvtest")
-StartConversation = ExtResource("5_kry3j")
