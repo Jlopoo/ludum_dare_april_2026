@@ -3,14 +3,28 @@ using System;
 
 public partial class options_menu : Control
 {
+    private Button backButton;
+	private Button mainMenuButton;
+
     public override void _Ready()
     {
         base._Ready();
         GD.Print("OptionsMenu Node Ready");
+
+        backButton = GetNode<Button>("CenterContainer/BackButton");
+        backButton.Pressed += OnBackPressed;
+
+		mainMenuButton = GetNode<Button>("CenterContainer/MainMenuButton");
+		mainMenuButton.Pressed += OnMainMenuPressed;
     }
 
-    public override void _Process(double delta)
+    private void OnBackPressed()
     {
-        base._Process(delta);
+        GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
     }
+
+	private void OnMainMenuPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+	}
 }
