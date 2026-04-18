@@ -17,6 +17,11 @@ public partial class main : Node2D
 			GD.Print("Options button connected");
 		}
 
+		//Instance HUD
+		var hud_Scene = GD.Load<PackedScene>("res://Scenes/HUD.tscn");
+        var hud_Instance = hud_Scene.Instantiate<HUD>();
+        AddChild(hud_Instance);
+
 		StartGame();
 	}
 

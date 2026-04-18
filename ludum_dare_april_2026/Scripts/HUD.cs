@@ -23,9 +23,16 @@ public partial class HUD : Control
 
 		optionButton.Pressed += () => OnOptionPressed(0);
 
+		// --- Dialogue Window ---
+		var dw_Scene = GD.Load<PackedScene>("res://Scenes/DialogueWindow.tscn");
+		var dw_Instance = dw_Scene.Instantiate<Control>();
+		AddChild(dw_Instance);
+
+		DialogueLog.Instance.AddEntry("Alice", "We meed again.");
+
 		// --- GameState and Conversation Wiring ---
 		_gameState = GetNode<GameState>("/root/GameState");
-		
+
 		// Find ConversationManager in the scene tree (it's a sibling or ancestor)
 		var root = GetTree().Root;
 		conversationManager = root.FindChild("ConversationManager", true, false) as ConversationManager;
