@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6x4xraxj3tfp"
-path="res://.godot/imported/alien3_raw_nobackground_signal_3.png-df8640976a7f61df5b4758dc099ac5d1.ctex"
+uid="uid://ck6pnh1rskc11"
+path="res://.godot/imported/alien3_raw_nobackground_signal.png-4b2c0670db922621d79559b4112b8e91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/alien3_raw_nobackground_signal_3.png"
-dest_files=["res://.godot/imported/alien3_raw_nobackground_signal_3.png-df8640976a7f61df5b4758dc099ac5d1.ctex"]
+source_file="res://Assets/Art/alien3_raw_nobackground_signal.png"
+dest_files=["res://.godot/imported/alien3_raw_nobackground_signal.png-4b2c0670db922621d79559b4112b8e91.ctex"]
 
 [params]
 

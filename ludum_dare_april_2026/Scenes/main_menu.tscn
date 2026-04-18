@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djkhwlwl5dqmh"]
 
 [ext_resource type="Script" uid="uid://dkd8emw5tw705" path="res://Scripts/main_menu.cs" id="1_28flt"]
-[ext_resource type="Texture2D" uid="uid://vg0mukf7p5ha" path="res://Assets/SpeedDatingBackground.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://vg0mukf7p5ha" path="res://Assets/Art/SpeedDatingBackground.png" id="2_bg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal_start"]
 bg_color = Color(0.298, 0.224, 0.157, 1)
