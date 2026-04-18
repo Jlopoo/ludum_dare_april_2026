@@ -19,24 +19,6 @@ offset_top = 8.0
 offset_right = 195.0
 offset_bottom = 24.0
 
-[node name="1_Text" type="RichTextLabel" parent="Response_1" unique_id=1133738909]
-layout_mode = 0
-offset_left = 4.0
-offset_right = 15.0
-offset_bottom = 16.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "1."
-
-[node name="Response_Text_1" type="RichTextLabel" parent="Response_1" unique_id=976935546]
-layout_mode = 0
-offset_left = 17.0
-offset_right = 184.0
-offset_bottom = 16.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "xxx"
-
 [node name="Response_2" type="Button" parent="." unique_id=1315515820]
 layout_mode = 0
 offset_left = 7.0
@@ -44,47 +26,9 @@ offset_top = 33.0
 offset_right = 194.0
 offset_bottom = 47.0
 
-[node name="2_Text" type="RichTextLabel" parent="Response_2" unique_id=1966528206]
-layout_mode = 0
-offset_left = 5.0
-offset_top = -2.0
-offset_right = 16.0
-offset_bottom = 14.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "2."
-
-[node name="Response_Text_2" type="RichTextLabel" parent="Response_2" unique_id=1107509426]
-layout_mode = 0
-offset_left = 18.0
-offset_top = -1.0
-offset_right = 185.0
-offset_bottom = 15.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "xxx"
-
 [node name="Response_3" type="Button" parent="." unique_id=215571848]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 55.0
 offset_right = 194.0
 offset_bottom = 70.0
-
-[node name="3_Text" type="RichTextLabel" parent="Response_3" unique_id=479106475]
-layout_mode = 0
-offset_left = 5.0
-offset_right = 16.0
-offset_bottom = 16.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "3."
-
-[node name="Response_Text_3" type="RichTextLabel" parent="Response_3" unique_id=2119140122]
-layout_mode = 0
-offset_left = 18.0
-offset_right = 185.0
-offset_bottom = 16.0
-theme_override_font_sizes/normal_font_size = 10
-bbcode_enabled = true
-text = "xxx"
