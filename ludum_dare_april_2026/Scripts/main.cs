@@ -4,18 +4,10 @@ public partial class main : Node2D
 {
 	private HUD hud;
 	private Button optionsButton;
-	private Aurameter aurameter;
-	
+
 	public override void _Ready()
 	{
         base._Ready();
-        
-        // Try to get HUD if it exists
-        if (HasNode("HUD"))
-        {
-            hud = GetNode<HUD>("HUD");
-            hud.Visible = false;
-        }
 
 		// Setup options gear button
 		optionsButton = GetNode<Button>("OptionsButton");
@@ -25,56 +17,18 @@ public partial class main : Node2D
 			GD.Print("Options button connected");
 		}
 
-		// Start the game
 		StartGame();
 	}
 
 	public void StartGame()
     {
 		GD.Print("StartGame() called");
-		
-		if (hud != null)
-		{
-			hud.Visible = true;
-			GD.Print("HUD made visible");
-		}
-		else
-		{
-			GD.Print("WARNING: HUD is null");
-		}
 
-		// Instantiate and add the Aurameter scene
-		try
-		{
-			PackedScene auraMeterScene = GD.Load<PackedScene>("res://Scenes/Aurameter.tscn");
-			if (auraMeterScene == null)
-			{
-				GD.Print("ERROR: Failed to load Aurameter.tscn");
-				return;
-			}
-			
-			aurameter = auraMeterScene.Instantiate<Aurameter>();
-			if (aurameter == null)
-			{
-				GD.Print("ERROR: Failed to instantiate Aurameter");
-				return;
-			}
-			
-			AddChild(aurameter);
-			GD.Print("Aurameter instantiated and added to scene");
-		}
-		catch (System.Exception ex)
-		{
-			GD.Print($"ERROR in StartGame: {ex.Message}");
-		}
-
-        // Optionally kick off the first conversation immediately
-        // hud.ShowConversation(
-        //     "Hello! Nice to meet you.",
-        //     "Nice to meet you too!",
-        //     "Who are you?",
-        //     "..."
-        // );
+		// Instantiate HUD (includes Aurameter as a child)
+		PackedScene hudScene = GD.Load<PackedScene>("res://Scenes/HUD.tscn");
+		hud = hudScene.Instantiate<HUD>();
+		AddChild(hud);
+		GD.Print("HUD instantiated and added to scene");
     }
 
 	private void OnOptionsPressed()

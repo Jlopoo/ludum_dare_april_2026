@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0bney7qb4lm"]
 
 [ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
+[ext_resource type="PackedScene" uid="uid://d36efxc2wixr7" path="res://Scenes/Aurameter.tscn" id="2_aurameter"]
 
 [node name="Hud" type="Control" unique_id=427346606]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sd512")
+
+[node name="Aurameter" parent="." instance=ExtResource("2_aurameter")]
 
 [node name="OptionsButtons" type="Control" parent="." unique_id=100000005]
 visible = false

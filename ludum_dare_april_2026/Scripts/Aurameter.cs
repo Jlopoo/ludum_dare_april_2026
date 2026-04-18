@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Aurameter : Control
 {
-	private float aurameter = 50f;
+	private float aurameter = 67f;
 	private float maxAurameter = 100f;
 	private float minAurameter = 0f;
 	private float auraChangeRate = 15f; // Aura change per second

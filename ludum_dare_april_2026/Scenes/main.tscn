@@ -48,9 +48,9 @@ expand_mode = 1
 
 [node name="OptionsButton" type="Button" parent="." unique_id=1539326017]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 10.0
+offset_left = 11.0
 offset_top = 10.0
-offset_right = 60.0
+offset_right = 61.0
 offset_bottom = 60.0
 theme_override_colors/font_color = Color(0.871, 0.773, 0.612, 1)
 theme_override_colors/font_pressed_color = Color(0.588, 0.502, 0.376, 1)

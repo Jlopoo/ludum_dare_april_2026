@@ -3,6 +3,7 @@ using Godot;
 public partial class HUD : Control
 {
 	// HUD child nodes
+	private Aurameter aurameter;
 	private Control optionsButtons;
 	private Button optionButton;
 
@@ -10,6 +11,9 @@ public partial class HUD : Control
 	{
 		base._Ready();
 		GD.Print("HUD Node Ready");
+
+		// --- Aurameter ---
+		aurameter = GetNode<Aurameter>("Aurameter");
 
 		// --- OptionsButtons ---
 		optionsButtons = GetNode<Control>("OptionsButtons");
