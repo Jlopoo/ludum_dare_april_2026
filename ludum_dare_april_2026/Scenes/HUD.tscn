@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck8kqsl3aeawp" path="res://Scripts/HUD.cs" id="1_sd512"]
 [ext_resource type="PackedScene" uid="uid://d36efxc2wixr7" path="res://Scenes/Aurameter.tscn" id="2_aurameter"]
+[ext_resource type="PackedScene" uid="uid://4csx0upmjdog" path="res://Scenes/DialogueWindow.tscn" id="3_psnte"]
 
 [node name="Hud" type="Control" unique_id=427346606]
 layout_mode = 3
@@ -12,7 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sd512")
 
-[node name="Aurameter" parent="." instance=ExtResource("2_aurameter")]
+[node name="Aurameter" parent="." unique_id=559509588 instance=ExtResource("2_aurameter")]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 6.0
+offset_right = 852.0
+offset_bottom = 82.0
 
 [node name="OptionsButtons" type="Control" parent="." unique_id=100000005]
 visible = false
@@ -29,3 +35,15 @@ offset_right = 250.0
 offset_bottom = 50.0
 theme_override_font_sizes/font_size = 18
 text = "Option 1"
+
+[node name="DialogueWindow" parent="." unique_id=809945404 instance=ExtResource("3_psnte")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 950.0
+offset_top = 298.0
+offset_right = 1152.0
+offset_bottom = 511.0
+grow_horizontal = 1
+grow_vertical = 1
