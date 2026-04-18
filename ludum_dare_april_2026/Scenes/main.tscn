@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bglvro8jcp7ho"]
+[gd_scene format=3 uid="uid://bohwmaputs0at"]
 
 [ext_resource type="Script" uid="uid://ch153xky4dbde" path="res://Scripts/main.cs" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://d57jtrs3wju2" path="res://Scripts/player_controller.cs" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://vg0mukf7p5ha" path="res://Assets/SpeedDatingBackground.png" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://c56kmk7asbmhg" path="res://Scripts/ConversationTestBootstrap.cs" id="4_cnvtest"]
+[ext_resource type="Resource" uid="uid://byh43lkh63ylm" path="res://Scenes/TestConversation.tres" id="5_kry3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal_gear"]
 bg_color = Color(0.298, 0.224, 0.157, 1)
@@ -51,6 +52,7 @@ expand_mode = 1
 
 [node name="ConversationTestBootstrap" type="Node" parent="." unique_id=573004729]
 script = ExtResource("4_cnvtest")
+StartConversation = ExtResource("5_kry3j")
 
 [node name="OptionsButton" type="Button" parent="." unique_id=1539326017]
 custom_minimum_size = Vector2(50, 50)
