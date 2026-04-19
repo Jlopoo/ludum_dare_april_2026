@@ -19,6 +19,8 @@ public partial class DialogueLog : VBoxContainer
 		{ "You",      "8ee0ff" },
 		{ "System",   "888888" },
 		{ "Squilliam", "ff8866" },
+		{ "Big Candace", "ff8866" },
+		{ "Lmanaga", "ff8866" },
 	};
 
 	public override void _Ready()

@@ -11,8 +11,19 @@ public enum Cue
 {
     None = 0,
 
+    //Alien 1
+    Pink,
+    Tan,
+    Blue,
+
     // Alien 2
     BloodshotEyes,
     WidePupils,
     TongueOut,
+
+    //Alien 3
+    Bubbles,
+    GreenStars,
+    PinkSkin,
+    
 }
