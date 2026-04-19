@@ -19,4 +19,9 @@ public partial class DialogueLine : Resource
     /// <see cref="global::Cue.None"/> for narration / player lines / unscored lines.
     /// </summary>
     [Export] public Cue Cue { get; set; } = Cue.None;
+
+    /// <summary>
+    /// Optional clip when this line is shown; if unset, the scene's GameManager default applies.
+    /// </summary>
+    [Export] public AudioStream? LineSound { get; set; }
 }

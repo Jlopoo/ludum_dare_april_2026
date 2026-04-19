@@ -9,6 +9,7 @@ using Godot;
 ///   <item><description><b>Aura scoring</b> — combines tone match (<see cref="ToneScoring"/>) with the choice's manual <see cref="DialogueChoice.AffectionDelta"/> and pushes to <see cref="GameState"/>.</description></item>
 ///   <item><description><b>Portrait swaps</b> — looks up the alien's <see cref="Species"/> for a cue-specific image, falls back to <see cref="Species.DefaultPortrait"/>, and routes through <see cref="GameState.RequestCharacterChange"/>.</description></item>
 ///   <item><description><b>Dialogue log</b> — writes spoken lines and chosen player responses to <see cref="DialogueLog"/>.</description></item>
+///   <item><description><b>Dialogue SFX</b> — optional clips on exported <c>AudioStream</c>s; per-line overrides via <see cref="DialogueLine.LineSound"/>.</description></item>
 /// </list>
 ///
 /// Lives as a child of the <c>Main</c> node, NOT as an autoload. Persistent
@@ -33,8 +34,12 @@ public partial class GameManager : Node
     /// </summary>
     [Export] public Conversation? StartingConversation { get; set; }
 
+    /// <summary>Default when <see cref="DialogueLine.LineSound"/> is unset.</summary>
+    [Export] public AudioStream? LineAdvanceSound { get; set; }
+
     private ConversationManager _conversationManager = null!;
     private GameState _gameState = null!;
+    private AudioStreamPlayer _lineSfx = null!;
 
     /// <summary>
     /// The in-flight conversation manager. UI scripts (ResponseWindow, etc.) should
@@ -52,6 +57,9 @@ public partial class GameManager : Node
 
         _conversationManager = new ConversationManager { Name = "ConversationManager" };
         AddChild(_conversationManager);
+
+        _lineSfx = new AudioStreamPlayer { Name = "DialogueLineSfx" };
+        AddChild(_lineSfx);
 
         _conversationManager.ConversationStarted += OnConversationStarted;
         _conversationManager.LineAdvanced += OnLineAdvanced;
@@ -77,6 +85,17 @@ public partial class GameManager : Node
             _conversationManager.ChoiceSelected -= OnChoiceSelected;
             _conversationManager.ConversationEnded -= OnConversationEnded;
         }
+    }
+
+    private static void PlayIfSet(AudioStreamPlayer player, AudioStream? stream)
+    {
+        if (stream is null)
+        {
+            return;
+        }
+
+        player.Stream = stream;
+        player.Play();
     }
 
     /// <summary>
@@ -119,6 +138,8 @@ public partial class GameManager : Node
             ? current.Alien.Name
             : line.SpeakerId;
         DialogueLog.Instance?.AddEntry(speaker, line.Text);
+
+        PlayIfSet(_lineSfx, line.LineSound ?? LineAdvanceSound);
     }
 
     private void OnChoiceSelected(DialogueChoice choice)
