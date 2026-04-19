@@ -48,6 +48,10 @@ public partial class DialogueLog : VBoxContainer
 			SizeFlagsHorizontal = SizeFlags.Fill,
 		};
 
+		// Bump the default font size so log entries are legible in the bigger window.
+		entry.AddThemeFontSizeOverride("normal_font_size", 16);
+		entry.AddThemeFontSizeOverride("bold_font_size", 16);
+
 		string color = _speakerColors.TryGetValue(speaker, out var c) ? c : "ffffff";
 		entry.Text = $"[b][color={color}]{speaker}:[/color][/b] {message}";
 

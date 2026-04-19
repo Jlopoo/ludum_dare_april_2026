@@ -19,10 +19,11 @@ public partial class ResponseWindow : Control
     {
         base._Ready();
 
-        // The buttons are direct children of ResponseWindow in the .tscn (no VBoxContainer wrapper).
-        response1 = GetNode<Button>("Response_1");
-        response2 = GetNode<Button>("Response_2");
-        response3 = GetNode<Button>("Response_3");
+        // Buttons live inside a VBoxContainer so they auto-distribute vertical space
+        // and resize cleanly with the parent ResponseWindow.
+        response1 = GetNode<Button>("VBoxContainer/Response_1");
+        response2 = GetNode<Button>("VBoxContainer/Response_2");
+        response3 = GetNode<Button>("VBoxContainer/Response_3");
 
         // Disable keyboard focus so spacebar / enter doesn't accidentally re-trigger a button.
         response1.FocusMode = FocusModeEnum.Click;
