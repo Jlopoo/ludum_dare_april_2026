@@ -18,6 +18,13 @@ public partial class Species : Resource
 
     [Export(PropertyHint.MultilineText)] public string Description { get; set; } = "";
 
+    /// <summary>
+    /// Portrait shown on the character display when no cue is active (conversation
+    /// start, lines without a cue, etc.). Optional — when null, GameManager simply
+    /// leaves whatever portrait is currently shown.
+    /// </summary>
+    [Export] public Texture2D? DefaultPortrait { get; set; }
+
     [Export] public Array<CueToneEntry> CueTones { get; set; } = new();
 
     private SysDict? _cache;
@@ -28,6 +35,21 @@ public partial class Species : Resource
         if (cue == Cue.None) return null;
         _cache ??= BuildCache();
         return _cache.TryGetValue(cue, out Tone tone) ? tone : null;
+    }
+
+    /// <summary>
+    /// Portrait the alien should show while expressing <paramref name="cue"/>, if any.
+    /// Returns null if the cue has no image attached or if the cue isn't in this species' table.
+    /// </summary>
+    public Texture2D? ImageFor(Cue cue)
+    {
+        if (cue == Cue.None) return null;
+        foreach (CueToneEntry entry in CueTones)
+        {
+            if (entry is null) continue;
+            if (entry.Cue == cue) return entry.CueImage;
+        }
+        return null;
     }
 
     private SysDict BuildCache()

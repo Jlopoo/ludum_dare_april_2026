@@ -36,11 +36,11 @@ public partial class Main : Node2D
 			gameState.CharacterChangeRequested -= SetCharacter;
 	}
 
-	/// Swaps the character portrait. Pass a res:// path to the new texture.
-	public void SetCharacter(string texturePath)
+	/// Swaps the character portrait. Texture is already loaded — caller provides the resource.
+	public void SetCharacter(Texture2D texture)
 	{
-		var texture = GD.Load<Texture2D>(texturePath);
-		characterDisplay.Texture = texture;
+		if (characterDisplay != null)
+			characterDisplay.Texture = texture;
 	}
 
 	public override void _Process(double delta)

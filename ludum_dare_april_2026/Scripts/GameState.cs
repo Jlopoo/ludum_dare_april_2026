@@ -20,18 +20,19 @@ public partial class GameState : Node
 
     // ── Character Portrait ────────────────────────────────────────────────
     /// <summary>
-    /// Emitted when gameplay code wants to swap the character portrait.
-    /// The <paramref name="texturePath"/> is a res:// path to the new texture.
+    /// Emitted when gameplay code wants to swap the character portrait. The texture
+    /// is passed by reference (already loaded) — callers don't need to think about
+    /// res:// paths, and the listening UI doesn't have to GD.Load anything.
     /// </summary>
-    [Signal] public delegate void CharacterChangeRequestedEventHandler(string texturePath);
+    [Signal] public delegate void CharacterChangeRequestedEventHandler(Texture2D texture);
 
     /// <summary>
-    /// Call this from ConversationManager (or any other system) to swap the
-    /// character portrait shown in the main scene.
+    /// Call this from GameManager (or any other system) to swap the character
+    /// portrait shown in the main scene.
     /// </summary>
-    public void RequestCharacterChange(string texturePath)
+    public void RequestCharacterChange(Texture2D texture)
     {
-        EmitSignal(SignalName.CharacterChangeRequested, texturePath);
+        EmitSignal(SignalName.CharacterChangeRequested, texture);
     }
 
     public override void _Ready()

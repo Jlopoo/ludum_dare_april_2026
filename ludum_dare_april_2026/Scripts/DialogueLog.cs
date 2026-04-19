@@ -1,32 +1,52 @@
-using Godot;
-using Microsoft.VisualBasic;
 using System.Collections.Generic;
+using Godot;
 
+/// <summary>
+/// Scrolling dialogue history shown inside the DialogueWindow. Lives as the script
+/// on a VBoxContainer; new entries append as <see cref="RichTextLabel"/> children.
+///
+/// Owns no state beyond display history. Speaker color is looked up from a small
+/// table; unknown speakers fall back to white. Register additional colors with
+/// <see cref="RegisterSpeakerColor"/> from gameplay code (e.g. when a new alien
+/// appears, give them a distinct hue).
+/// </summary>
 public partial class DialogueLog : VBoxContainer
 {
+	public static DialogueLog Instance { get; private set; }
 
-	public static DialogueLog Instance {get; private set;}
+	private readonly Dictionary<string, string> _speakerColors = new()
+	{
+		{ "You",      "8ee0ff" },
+		{ "System",   "888888" },
+		{ "Squilliam", "ff8866" },
+	};
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Instance = this;
 	}
 
-	private readonly Dictionary<string, string> _speakerColors = new()
+	public override void _ExitTree()
 	{
-		{"Alice", "00ffff"},
-		{"Bob", "ffff00"},
-	};
+		base._ExitTree();
+		if (Instance == this) Instance = null;
+	}
+
+	public void RegisterSpeakerColor(string speaker, string hexColor)
+	{
+		_speakerColors[speaker] = hexColor;
+	}
 
 	public void AddEntry(string speaker, string message)
 	{
-		var entry = new RichTextLabel();
-		entry.BbcodeEnabled = true;
-		entry.FitContent = true;
-		entry.ScrollActive = false;
-		entry.AutowrapMode = TextServer.AutowrapMode.Word;
-		entry.SizeFlagsHorizontal = SizeFlags.Fill;
+		var entry = new RichTextLabel
+		{
+			BbcodeEnabled = true,
+			FitContent = true,
+			ScrollActive = false,
+			AutowrapMode = TextServer.AutowrapMode.Word,
+			SizeFlagsHorizontal = SizeFlags.Fill,
+		};
 
 		string color = _speakerColors.TryGetValue(speaker, out var c) ? c : "ffffff";
 		entry.Text = $"[b][color={color}]{speaker}:[/color][/b] {message}";
@@ -35,17 +55,13 @@ public partial class DialogueLog : VBoxContainer
 		ScrollToBottom();
 	}
 
-
 	private async void ScrollToBottom()
 	{
 		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 		var scroll = GetParent<ScrollContainer>();
-		scroll.ScrollVertical = (int)scroll.GetVScrollBar().MaxValue;
-	}
-
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		if (scroll != null)
+		{
+			scroll.ScrollVertical = (int)scroll.GetVScrollBar().MaxValue;
+		}
 	}
 }

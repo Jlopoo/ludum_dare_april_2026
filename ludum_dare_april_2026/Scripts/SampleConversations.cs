@@ -64,22 +64,31 @@ public static class SampleConversations
     }
 
     /// <summary>
-    /// Sample that exercises the full cue system end-to-end. Squilliam is a Floopian;
-    /// for Floopians, <see cref="Cue.BubbleEars"/> demands an <see cref="Tone.Affectionate"/>
-    /// response and <see cref="Cue.AntennaTwitch"/> demands an <see cref="Tone.Intellectual"/>
-    /// one. (You can flip these around freely — that's just one species' rules.)
+    /// Squilliam from Jumbilio (an Alien-2 species). Demonstrates the cue system
+    /// end-to-end: each alien line carries a <see cref="Cue"/>, the species table
+    /// resolves it to the expected response <see cref="Tone"/>, and the matching
+    /// portrait texture rides along so <see cref="GameManager"/> can swap the
+    /// character display in sync with the line.
     /// </summary>
-    public static Conversation FloopianIntro()
+    public static Conversation SquilliamIntro()
     {
+        // Preload textures once. GD.Load caches resources, so repeated calls across
+        // multiple Conversation builders are cheap.
+        Texture2D portraitDefault = GD.Load<Texture2D>("res://Assets/Art/alien2_raw.png");
+        Texture2D imgBloodshotEyes = GD.Load<Texture2D>("res://Assets/Art/alien2_signal1.png");
+        Texture2D imgWidePupils    = GD.Load<Texture2D>("res://Assets/Art/alien2_signal2.png");
+        Texture2D imgTongueOut     = GD.Load<Texture2D>("res://Assets/Art/alien2_signal3.png");
+
         Species alien2 = new()
         {
             Name = "Alien 2",
             Description = "Alien 2 is handsome squidward.",
+            DefaultPortrait = portraitDefault,
             CueTones = new Array<CueToneEntry>
             {
-                new() { Cue = Cue.BloodshotEyes,    Tone = Tone.Affectionate },
-                new() { Cue = Cue.WidePupils,    Tone = Tone.Aggressive },
-                new() { Cue = Cue.TongueOut, Tone = Tone.Intellectual },
+                new() { Cue = Cue.BloodshotEyes, Tone = Tone.Affectionate, CueImage = imgBloodshotEyes },
+                new() { Cue = Cue.WidePupils,    Tone = Tone.Aggressive,   CueImage = imgWidePupils },
+                new() { Cue = Cue.TongueOut,     Tone = Tone.Intellectual, CueImage = imgTongueOut },
             },
         };
         Alien squilliam = new() { Name = "Squilliam", Species = alien2 };
@@ -141,6 +150,33 @@ public static class SampleConversations
                             Text = "That's creepy. I was trying to be candid here.",
                             Tone = Tone.Aggressive,
                             ResponseText = "Squilliam's antennae droop.",
+                        },
+                    },
+                },
+                new DialogueLine
+                {
+                    SpeakerId = "Squilliam",
+                    Cue = Cue.TongueOut,
+                    Text = "*Squilliam's tongue lolls out, pensive.* Tell me — how do your kind decide whom to love?",
+                    Choices = new Array<DialogueChoice>
+                    {
+                        new()
+                        {
+                            Text = "Honestly, vibes. Maybe pheromones. We don't think about it.",
+                            Tone = Tone.Aggressive,
+                            ResponseText = "Squilliam blinks slowly, unimpressed.",
+                        },
+                        new()
+                        {
+                            Text = "We tend to pair via revealed preference and repeated exposure.",
+                            Tone = Tone.Intellectual,
+                            ResponseText = "Squilliam nods, tongue retracting in approval.",
+                        },
+                        new()
+                        {
+                            Text = "Truthfully? When we feel safe with someone.",
+                            Tone = Tone.Affectionate,
+                            ResponseText = "Squilliam's tongue trembles slightly. *That is... lovely.*",
                         },
                     },
                 },

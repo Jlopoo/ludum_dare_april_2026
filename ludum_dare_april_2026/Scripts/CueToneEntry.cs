@@ -19,4 +19,10 @@ public partial class CueToneEntry : Resource
 {
     [Export] public Cue Cue { get; set; } = Cue.None;
     [Export] public Tone Tone { get; set; } = Tone.None;
+
+    /// <summary>
+    /// Optional portrait to show on the alien's character display while this cue is
+    /// active. Leave null to keep the species' default portrait.
+    /// </summary>
+    [Export] public Texture2D? CueImage { get; set; }
 }
