@@ -24,7 +24,7 @@ public partial class main_menu : Control
     private void OnStartPressed()
     {
         GetNode<GameState>("/root/GameState").SetAura(67f);
-        GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
     }
 
     private void OnOptionsPressed()
