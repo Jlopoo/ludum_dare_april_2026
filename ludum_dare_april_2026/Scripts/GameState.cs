@@ -12,11 +12,17 @@ public partial class GameState : Node
     public static GameState Instance { get; private set; } = null!;
 
     // ── Aura ──────────────────────────────────────────────────────────────
+    public float StartingAura { get; private set; } = 67f;
     public float Aura { get; private set; } = 67f;
     public float MaxAura { get; } = 100f;
     public float MinAura { get; } = 0f;
 
     [Signal] public delegate void AuraChangedEventHandler(float newValue);
+
+    // ── Progress / Score ───────────────────────────────────────────────────
+    public int Points { get; private set; }
+
+    [Signal] public delegate void PointsChangedEventHandler(int newValue);
 
     // ── Character Portrait ────────────────────────────────────────────────
     /// <summary>
@@ -39,6 +45,15 @@ public partial class GameState : Node
     {
         base._Ready();
         Instance = this;
+    }
+
+    /// <summary>
+    /// Resets run-scoped state before starting a new campaign.
+    /// </summary>
+    public void ResetRunState()
+    {
+        SetAura(StartingAura);
+        SetPoints(0);
     }
 
     public void IncreaseAura(float amount)
@@ -65,5 +80,18 @@ public partial class GameState : Node
     {
         if (delta != 0)
             IncreaseAura(delta);
+    }
+
+    public void AddPoint(int amount = 1)
+    {
+        if (amount <= 0) return;
+        SetPoints(Points + amount);
+    }
+
+    private void SetPoints(int value)
+    {
+        if (value == Points) return;
+        Points = value;
+        EmitSignal(SignalName.PointsChanged, Points);
     }
 }

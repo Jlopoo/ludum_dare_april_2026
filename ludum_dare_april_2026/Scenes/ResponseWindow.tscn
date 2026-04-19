@@ -98,3 +98,11 @@ offset_bottom = 35.12799
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
+
+[node name="NextDateButton" type="Button" parent="VBoxContainer" unique_id=900000002]
+visible = false
+custom_minimum_size = Vector2(200, 65)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 18
+text = "Next Date"

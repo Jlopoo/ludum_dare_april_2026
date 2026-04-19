@@ -20,6 +20,22 @@ public partial class Conversation : Resource
     /// </summary>
     [Export] public Alien? Alien { get; set; }
 
+    /// <summary>
+    /// End-of-date success condition. A conversation is considered successful only when
+    /// the player's aura is strictly greater than this value (Aura &gt; Threshold).
+    /// </summary>
+    [Export] public float SuccessAuraThreshold { get; set; } = 50f;
+
+    /// <summary>
+    /// Optional line logged when the date ends successfully.
+    /// </summary>
+    [Export(PropertyHint.MultilineText)] public string SuccessOutro { get; set; } = "";
+
+    /// <summary>
+    /// Optional line logged when the date ends unsuccessfully.
+    /// </summary>
+    [Export(PropertyHint.MultilineText)] public string FailureOutro { get; set; } = "";
+
     [Export] public Array<DialogueLine> Lines { get; set; } = new();
 
     /// <summary>

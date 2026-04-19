@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -11,11 +12,24 @@ using Godot.Collections;
 /// </summary>
 public static class SampleConversations
 {
+    /// <summary>
+    /// Default level order for the current playable run.
+    /// </summary>
+    public static List<Conversation> CampaignOrder() => new()
+    {
+        LmangaIntro(),
+        SquilliamIntro(),
+        BigCandaceIntro(),
+    };
+
     public static Conversation AlienOneIntro()
     {
         return new Conversation
         {
             ConversationId = "alien1_intro",
+            SuccessAuraThreshold = 55f,
+            SuccessOutro = "You leave the table with a strange but genuine spark.",
+            FailureOutro = "You part ways awkwardly, neither of you convinced this could work.",
             Lines = new Array<DialogueLine>
             {
                 new DialogueLine
@@ -91,6 +105,9 @@ public static class SampleConversations
         {
             ConversationId = "alien1_intro",
             Alien = Lmanaga,
+            SuccessAuraThreshold = 56f,
+            SuccessOutro = "Lmanaga's tendrils settle. \"postulate -- pair-bond viable -- further analysis desired.\"",
+            FailureOutro = "Lmanaga retracts in disgust. \"conclusion -- mismatch -- terminate exchange.\"",
             Lines = new Array<DialogueLine>
             {
                 new DialogueLine
@@ -218,6 +235,9 @@ public static class SampleConversations
         {
             ConversationId = "alien2_intro",
             Alien = squilliam,
+            SuccessAuraThreshold = 62f,
+            SuccessOutro = "Squilliam exhales slowly. \"Perhaps this was not a waste of orbit after all.\"",
+            FailureOutro = "Squilliam checks his chrono-band. \"I have endured enough for one cycle.\"",
             Lines = new Array<DialogueLine>
             {
                 new DialogueLine
@@ -339,6 +359,9 @@ public static class SampleConversations
         {
             ConversationId = "alien3_intro",
             Alien = BigCandace,
+            SuccessAuraThreshold = 68f,
+            SuccessOutro = "Big Candace winks all three eyes. \"You're spicy. Find me after closing, sugar.\"",
+            FailureOutro = "Big Candace cracks her knuckles. \"Nah. Vibes are dead. I'm out.\"",
             Lines = new Array<DialogueLine>
             {
                 new DialogueLine

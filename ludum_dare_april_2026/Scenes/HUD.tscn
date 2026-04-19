@@ -61,6 +61,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed_gear")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover_gear")
 text = "⚙"
 
+[node name="ScoreLabel" type="Label" parent="." unique_id=100000008]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 20.0
+offset_right = 1136.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Successful Dates: 0"
+horizontal_alignment = 2
+
 [node name="DialogueWindow" parent="." unique_id=809945404 instance=ExtResource("3_psnte")]
 layout_mode = 1
 anchors_preset = 0
