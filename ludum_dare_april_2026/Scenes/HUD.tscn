@@ -66,17 +66,17 @@ layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 946.0
-offset_top = 257.0
-offset_right = 1147.0
-offset_bottom = 468.0
+offset_left = 720.0
+offset_top = 100.0
+offset_right = 1140.0
+offset_bottom = 380.0
 
 [node name="ResponseWindow" parent="." unique_id=152219563 instance=ExtResource("4_s3jbq")]
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 947.0
-offset_top = 487.0
-offset_right = 1149.0
-offset_bottom = 566.0
+offset_left = 720.0
+offset_top = 395.0
+offset_right = 1140.0
+offset_bottom = 640.0
