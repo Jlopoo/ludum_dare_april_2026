@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d57jtrs3wju2" path="res://Scripts/player_controller.cs" id="2_v1gob"]
 [ext_resource type="Texture2D" uid="uid://vg0mukf7p5ha" path="res://Assets/Art/SpeedDatingBackground.png" id="3_jw32o"]
 [ext_resource type="Texture2D" uid="uid://xxkpbebf4d7n" path="res://Assets/Art/alien1_raw.png" id="4_50glp"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="5_gamemgr"]
+[ext_resource type="Script" uid="uid://g0e8iu14ii4c" path="res://Scripts/GameManager.cs" id="5_vy5pj"]
 
 [node name="Main" type="Node2D" unique_id=1510557570]
 script = ExtResource("1_pbw6q")
@@ -35,4 +35,4 @@ expand_mode = 3
 stretch_mode = 6
 
 [node name="GameManager" type="Node" parent="." unique_id=573004729]
-script = ExtResource("5_gamemgr")
+script = ExtResource("5_vy5pj")
