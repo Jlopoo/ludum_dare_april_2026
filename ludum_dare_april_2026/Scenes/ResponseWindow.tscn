@@ -4,10 +4,11 @@
 
 [node name="ResponseWindow" type="Control" unique_id=152219563]
 layout_mode = 3
-anchor_right = 0.17500001
-anchor_bottom = 0.12200001
-offset_right = 0.3999939
-offset_bottom = -0.056007385
+anchor_top = 0.326
+anchor_right = 0.261
+anchor_bottom = 0.652
+offset_left = 1.0
+offset_right = 0.32800293
 script = ExtResource("1_rspwn")
 
 [node name="Panel" type="Panel" parent="." unique_id=1324060303]
@@ -24,31 +25,76 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = -12.0
-offset_bottom = -12.0
+offset_left = 0.42399597
+offset_top = 0.12400055
+offset_right = -99.576004
+offset_bottom = -0.12400818
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
 [node name="Response_1" type="Button" parent="VBoxContainer" unique_id=59403031]
+custom_minimum_size = Vector2(200, 65)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 65)
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 2
+
+[node name="Icon_1" type="TextureRect" parent="VBoxContainer/Response_1" unique_id=59403032]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1700001
+anchor_top = 0.5
+anchor_right = 1.1700001
+anchor_bottom = 0.5
+offset_left = -31.424011
+offset_top = -27.87201
+offset_right = 31.575974
+offset_bottom = 32.12799
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
 
 [node name="Response_2" type="Button" parent="VBoxContainer" unique_id=1315515820]
+custom_minimum_size = Vector2(200, 65)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 65)
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 2
 
+[node name="Icon_2" type="TextureRect" parent="VBoxContainer/Response_2" unique_id=1315515821]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1630001
+anchor_top = 0.5
+anchor_right = 1.1630001
+anchor_bottom = 0.5
+offset_left = -35.024017
+offset_top = -31.87201
+offset_right = 34.975967
+offset_bottom = 38.12799
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
 [node name="Response_3" type="Button" parent="VBoxContainer" unique_id=215571848]
+custom_minimum_size = Vector2(200, 65)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 65)
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 2
+
+[node name="Icon_3" type="TextureRect" parent="VBoxContainer/Response_3" unique_id=215571849]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1780001
+anchor_top = 0.5
+anchor_right = 1.1780001
+anchor_bottom = 0.5
+offset_left = -35.024017
+offset_top = -34.87201
+offset_right = 34.975967
+offset_bottom = 35.12799
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
