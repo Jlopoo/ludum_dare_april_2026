@@ -20,7 +20,7 @@ public partial class options_menu : Control
 
     private void OnBackPressed()
     {
-        GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
+        GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
     }
 
 	private void OnMainMenuPressed()
